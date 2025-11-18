@@ -1,0 +1,47 @@
+<div class="flex flex-col justify-center items-center">
+<h1 class="text-3xl font-bold mb-15 mt-5 self-start">Gestion de Alumnos</h1>
+<div class="w-full rounded-lg overflow-hidden shadow-sm">
+  <table class="bg-white w-full">
+    <thead>
+      <tr class="text-left bg-slate-500 text-white text-sm">
+        @for (columnName of columnsName; track $index) {
+          <th class="py-4 px-6 text-lg font-mono">
+            {{ columnName }}
+          </th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (student of students; track student.id) {
+        <tr class="border-b-gray-500">
+          <td class="py-4 px-4 font-medium">{{ student.nombre }}</td>
+          <td class="px-4 text-slate-500">{{ student.email }}</td>
+          <td class="px-4">{{ student.clases.join(', ') }}</td>
+          <td class="px-4">
+            <span
+              class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full"
+              [class.bg-green-50]="student.estado === 'al_dia'"
+              [class.text-green-600]="student.estado === 'al_dia'"
+              [class.bg-yellow-50]="student.estado === 'pendiente'"
+              [class.text-yellow-700]="student.estado === 'pendiente'"
+            >
+              <span
+                class="w-2 h-2 rounded-full"
+                [class.bg-green-500]="student.estado === 'al_dia'"
+                [class.bg-yellow-400]="student.estado === 'pendiente'"
+              ></span>
+              {{ student.estado === 'al_dia' ? 'Al día' : 'Pendiente' }}
+            </span>
+          </td>
+          <td class="px-4 text-slate-500">{{ student.notas }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+
+</div>
+
+
