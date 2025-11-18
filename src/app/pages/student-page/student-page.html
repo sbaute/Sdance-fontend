@@ -1,47 +1,59 @@
-<div class="flex flex-col justify-center items-center">
-<h1 class="text-3xl font-bold mb-15 mt-5 self-start">Gestion de Alumnos</h1>
-<div class="w-full rounded-lg overflow-hidden shadow-sm">
-  <table class="bg-white w-full">
-    <thead>
-      <tr class="text-left bg-slate-500 text-white text-sm">
-        @for (columnName of columnsName; track $index) {
-          <th class="py-4 px-6 text-lg font-mono">
-            {{ columnName }}
-          </th>
-        }
-      </tr>
-    </thead>
+<div class="flex flex-col justify-center items-center w-full p-5">
 
-    <tbody>
-      @for (student of students; track student.id) {
-        <tr class="border-b-gray-500">
-          <td class="py-4 px-4 font-medium">{{ student.nombre }}</td>
-          <td class="px-4 text-slate-500">{{ student.email }}</td>
-          <td class="px-4">{{ student.clases.join(', ') }}</td>
-          <td class="px-4">
-            <span
-              class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full"
-              [class.bg-green-50]="student.estado === 'al_dia'"
-              [class.text-green-600]="student.estado === 'al_dia'"
-              [class.bg-yellow-50]="student.estado === 'pendiente'"
-              [class.text-yellow-700]="student.estado === 'pendiente'"
-            >
-              <span
-                class="w-2 h-2 rounded-full"
-                [class.bg-green-500]="student.estado === 'al_dia'"
-                [class.bg-yellow-400]="student.estado === 'pendiente'"
-              ></span>
-              {{ student.estado === 'al_dia' ? 'Al día' : 'Pendiente' }}
-            </span>
-          </td>
-          <td class="px-4 text-slate-500">{{ student.notas }}</td>
+  <!-- COMPONENTE HEADER -->
+  <div class="w-full flex flex-col mb-4">
+    <h1 class="text-3xl font-bold mt-5">Gestion de Alumnos</h1>
+
+    <div class="relative mt-10 w-full">
+      <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+      <input
+        type="text"
+        class="border border-gray-300 rounded-md p-2 pl-10 w-full text-black placeholder-gray-400"
+        placeholder="Buscar Alumno"
+      />
+    </div>
+  </div>
+
+  <!-- COMPONENTE TABLA -->
+  <div class="w-full rounded-lg overflow-hidden shadow-sm">
+    <table class="bg-white w-full">
+      <thead>
+        <tr class="text-left bg-gray-500 text-white text-sm">
+          @for (columnName of columnsName; track $index) {
+            <th class="py-4 px-6 text-lg font-mono">
+              {{ columnName }}
+            </th>
+          }
         </tr>
-      }
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        @for (student of students; track student.id) {
+          <tr class="border-b-gray-500">
+            <td class="py-4 px-4 font-medium">{{ student.firstName +' '+ student.lastName}}</td>
+            <td class="py-4 px-4 text-slate-500">{{ student.document }}</td>
+            <td class="py-4 px-4 text-slate-500">{{ student.phoneNumber }}</td>
+            <td class="px-4 text-slate-500">{{ student.email }}</td>
+            <td class="px-4">{{ student.classes.join(', ') }}</td>
+            <td class="px-4">
+              <span
+                class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full"
+                [class.bg-green-50]="student.status === 'al_dia'"
+                [class.text-green-600]="student.status === 'al_dia'"
+                [class.bg-yellow-50]="student.status === 'pendiente'"
+                [class.text-yellow-700]="student.status === 'pendiente'">
+                <span
+                  class="w-2 h-2 rounded-full"
+                  [class.bg-green-500]="student.status === 'al_dia'"
+                  [class.bg-yellow-400]="student.status === 'pendiente'"></span>
+                {{ student.status === 'al_dia' ? 'Al día' : 'Pendiente' }}
+              </span>
+            </td>
+            <td class="px-4 text-slate-500">{{ student.notes }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
 </div>
-
-
-</div>
-
-
