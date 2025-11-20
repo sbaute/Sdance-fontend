@@ -1,1 +1,14 @@
-<p>Class-page works!</p>,
+<div class="flex flex-col justify-center items-center w-full p-5">
+
+  <!-- COMPONENTE HEADER -->
+  <div class="w-full">
+    <page-header entityName="Clases"/>
+  </div>
+
+  <!-- COMPONENTE TABLA GENÉRICA -->
+  <table-complete
+    [columnsName]="columnsName"
+    [rows]="danceClasses"
+    [keys]="danceClassKeys"
+  />
+</div>

@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { Student } from '../../interfaces/Student';
+import { TableComplete } from '../../components/table/table-complete';
+import { PageHeader } from "../../components/page-header/page-header";
 
 
 @Component({
   selector: 'student-page',
-  imports: [],
+  imports: [TableComplete, PageHeader],
   templateUrl: './student-page.html',
 })
 export default class StudentPage {
 
-  columnsName: string[] = [
+      columnsName = [
     'Nombre',
     'Documento',
     'Numero',
@@ -19,11 +20,22 @@ export default class StudentPage {
     'Notas'
   ];
 
-  students: Student[] = [
-    {
+  // keys que quiero mostrar
+  studentKeys = [
+    'fullName',
+    'document',
+    'phoneNumber',
+    'email',
+    'classes',
+    'status',
+    'notes'
+  ];
+
+  // Transformo la data original
+  students = [
+     {
       id: 1,
-      firstName: 'Sofía',
-      lastName: 'Rodríguez',
+      fullName: 'Sofía Rodríguez',
       document: '41.258.963',
       phoneNumber: '+54 9 341 555-1200',
       email: 'sofia.rodriguez@email.com',
@@ -33,7 +45,7 @@ export default class StudentPage {
     },
     {
       id: 2,
-      firstName: 'Carlos',
+      fullName: 'Carlos',
       lastName: 'Pérez',
       document: '38.521.744',
       phoneNumber: '+54 9 341 555-2834',
@@ -44,8 +56,7 @@ export default class StudentPage {
     },
     {
       id: 3,
-      firstName: 'Ana',
-      lastName: 'García',
+      fullName: 'Ana García',
       document: '42.986.300',
       phoneNumber: '+54 9 341 555-4102',
       email: 'ana.garcia@email.com',
@@ -55,8 +66,7 @@ export default class StudentPage {
     },
     {
       id: 4,
-      firstName: 'Javier',
-      lastName: 'López',
+      fullName: 'Javier López',
       document: '37.444.958',
       phoneNumber: '+54 9 341 555-7620',
       email: 'javier.lopez@email.com',
@@ -66,8 +76,7 @@ export default class StudentPage {
     },
     {
       id: 5,
-      firstName: 'María',
-      lastName: 'Martínez',
+      fullName: 'María Martínez',
       document: '40.302.119',
       phoneNumber: '+54 9 341 555-9512',
       email: 'maria.martinez@email.com',
@@ -76,8 +85,5 @@ export default class StudentPage {
       notes: 'Needs follow-up'
     }
   ];
-
-
-
 
  }

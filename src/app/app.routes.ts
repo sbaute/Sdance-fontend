@@ -18,6 +18,10 @@ export const routes: Routes = [
       path:'class',
       loadComponent: () => import('./pages/Class-page/Class-page'),
     },
+     {
+      path:'instructor',
+      loadComponent: () => import('./pages/instructor-page/instructor-page'),
+    },
     {
       path:'payment',
       loadComponent: () => import('./pages/payment-page/payment-page'),

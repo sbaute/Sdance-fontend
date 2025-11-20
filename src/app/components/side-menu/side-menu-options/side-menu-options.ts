@@ -22,25 +22,29 @@ export class SideMenuOptions {
 
     {
       icon: 'fa-regular fa-house',
-      label: 'home',
+      label: 'Inicio',
       route: '/dashboard/home',
     },
     {
       icon: 'fa-solid fa-users',
-      label: 'Students',
+      label: 'Alumnos',
       route: '/dashboard/student',
     },
       {
       icon: 'fa-regular fa-clipboard',
-      label: 'Class',
+      label: 'Clases',
       route: '/dashboard/class',
     },
     {
+      icon: 'fa-solid fa-person',
+      label: 'Instructores',
+      route: '/dashboard/instructor',
+    },
+    {
       icon: 'fa-regular fa-credit-card',
-      label: 'Payment',
+      label: 'Pagos',
       route: '/dashboard/payment',
     },
-
 
 
 
