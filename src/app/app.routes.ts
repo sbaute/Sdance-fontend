@@ -6,10 +6,7 @@ export const routes: Routes = [
   path:'dashboard',
   loadComponent: () => import('./pages/dashboard-page/dashboard-page'),
   children: [
-     {
-      path:'home',
-      loadComponent: () => import('./pages/home-page/home-page'),
-    },
+
     {
       path:'student',
       loadComponent: () => import('./pages/student-page/student-page'),

@@ -23,7 +23,7 @@ export class SideMenuOptions {
     {
       icon: 'fa-regular fa-house',
       label: 'Inicio',
-      route: '/dashboard/home',
+      route: '/dashboard/dashboard',
     },
     {
       icon: 'fa-solid fa-users',
