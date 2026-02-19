@@ -1,2 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+@theme {
+
+/* =========================
+   PRIMARY (Teal del diseño)
+   ========================= */
+
+--color-primary-50:  #E9F2F1; /* fondos muy suaves, cards claras, inputs */
+--color-primary-100: #DAE8E7; /* fondo body tabla, secciones secundarias */
+--color-primary-200: #BFD7D5; /* fondo header tabla */
+--color-primary-300: #C9DED9; /* fondo navbar */
+
+--color-primary-400: #49A695; /* navbar activo / hover states */
+--color-primary-500: #4BA68C; /* botones principales */
+--color-primary-600: #368C86; /* texto items navbar */
+--color-primary-700: #3B8C7D; /* hover botones / elementos interactivos */
+
+--color-primary-800: #455955; /* títulos principales (Gestión, Alumnos) */
+--color-primary-900: #142624; /* texto fuerte, header tabla */
+
+/* =========================
+     TITLES
+     ========================= */
+
+  --color-title-main: #455955; /* Gestión de danza / Alumnos */
+
+  /* =========================
+     NAVBAR
+     ========================= */
+
+  --color-navbar-bg: #C9DED9; /* fondo navbar */
+  --color-navbar-text: #368C86; /* opciones navbar */
+  --color-navbar-active: #49A695; /* opción seleccionada */
+
+  /* =========================
+     SEARCH
+     ========================= */
+
+  --color-search-bg: #E9F2F1; /* fondo input búsqueda */
+  --color-search-placeholder: #5B706F; /* placeholder / texto búsqueda */
+
+  /* =========================
+     TABLE
+     ========================= */
+
+  --color-table-header-text: #142624; /* letra header tabla */
+  --color-table-header-bg: #BFD7D5; /* fondo header tabla */
+  --color-table-body-bg: #DAE8E7; /* fondo body tabla */
+
+  /* =========================
+     BUTTONS
+     ========================= */
+
+  --color-button-primary: #4BA68C; /* fondo botón principal */
+
+  /* =========================
+     STATUS: PENDIENTE
+     ========================= */
+
+  --color-status-pending-bg: #F2E3B3; /* fondo pendiente */
+  --color-status-pending-text: #593D0A; /* letra pendiente */
+
+  /* =========================
+     STATUS: AL DÍA
+     ========================= */
+
+  --color-status-success-bg: #C0E0C1; /* fondo al día */
+  --color-status-success-text: #1B5919; /* letra al día */
+
+}

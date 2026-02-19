@@ -1,16 +1,43 @@
- <nav class="flex flex-col gap-1">
+@for (item of menuOptions; track item.label) {
 
-  @for (item of menuOptions; track item.route) {
-     <a
+  @if (item.route) {
+    <a
       [routerLink]="item.route"
-      routerLinkActive="bg-violet-100 text-violet-600 rounded-lg"
+      routerLinkActive="bg-[var(--color-navbar-active)] text-white"
       [routerLinkActiveOptions]="{ exact: true }"
-      class="px-3 py-2 text-slate-500 grounded-lg flex items-center gap-3  font-medium">
+      class="px-3 py-2
+             rounded-lg
+             text-[var(--color-navbar-text)]
+             hover:bg-[var(--color-navbar-active)]/20
+             flex items-center gap-3
+             font-medium transition-all duration-200"
+    >
       <i [class]="item.icon"></i>
-      <span class="text-sm">{{item.label}}</span>
+      <span class="text-sm">{{ item.label }}</span>
     </a>
   }
-</nav>
+
+  @else {
+    <button
+      type="button"
+      (click)="logout()"
+      class="w-full text-left
+             px-3 py-2
+             rounded-lg
+             text-[var(--color-navbar-text)]
+             hover:bg-[var(--color-navbar-active)]/20
+             flex items-center gap-3
+             font-medium transition-all duration-200"
+    >
+      <i [class]="item.icon"></i>
+      <span class="text-sm">{{ item.label }}</span>
+    </button>
+  }
+
+}
+
+
+
   <!-- Activo -->
   <!-- Inactivos
   <a href="#"

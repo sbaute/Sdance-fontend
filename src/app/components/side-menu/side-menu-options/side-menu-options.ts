@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { AuthService } from '../../../auth/auth-service';
 
-
-interface MenuOption {
+export interface MenuOption {
   icon: string;
   label: string;
-  route: string;
+  route?: string;
+  action?: 'logout';
 }
 
 
@@ -16,6 +17,16 @@ interface MenuOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideMenuOptions {
+
+constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login'], { replaceUrl: true });
+  }
 
 
   menuOptions: MenuOption[] = [
@@ -46,9 +57,16 @@ export class SideMenuOptions {
       route: '/dashboard/payment',
     },
 
-
+    //Logout
+    {
+      icon: 'fa-solid fa-right-from-bracket',
+      label: 'Cerrar sesión',
+      action: 'logout',
+    },
 
   ]
+
+
 
 
 

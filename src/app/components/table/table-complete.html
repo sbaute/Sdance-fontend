@@ -1,7 +1,8 @@
 <div class="flex flex-col rounded-lg overflow-hidden shadow-lg">
-  <table class="bg-white table-fixed w-full">
+  <table class="bg-[var(--color-table-body-bg)] table-fixed w-full">
 
-    <thead class="bg-gray-300 text-gray-600 text-sm">
+    <thead class="bg-[var(--color-table-header-bg)]
+                   text-[var(--color-table-header-text)] text-sm">
       <tr>
         @for (col of columnsName(); track $index) {
           <th class="w-40 py-4 px-4 text-left font-semibold whitespace-nowrap truncate">
@@ -14,28 +15,26 @@
     <tbody>
       @for (row of rows(); track $index) {
 
-        <tr class="border-b border-b-gray-300">
+        <tr class="border-b border-[var(--color-table-header-bg)]">
 
           @for (key of keys(); track key) {
 
-            <!--key STATUS -->
             @if (key === 'status') {
               <td class="px-4 py-3">
-                  <span
-                    class="px-3 py-1 rounded-full text-sm font-medium"
-                    [class.bg-green-100]="['al_dia', 'activo'].includes(row[key])"
-                    [class.text-green-700]="['al_dia', 'activo'].includes(row[key])"
-                    [class.bg-yellow-100]="['pendiente', 'licencia'].includes(row[key])"
-                    [class.text-yellow-700]="['pendiente', 'licencia'].includes(row[key])"
-                  >
-                    {{ row[key] }}
-                  </span>
+                <span
+                  class="px-3 py-1 rounded-full text-sm font-medium"
+                  [class.bg-[var(--color-status-success-bg)]]="['al_dia', 'activo'].includes(row[key])"
+                  [class.text-[var(--color-status-success-text)]]="['al_dia', 'activo'].includes(row[key])"
+                  [class.bg-[var(--color-status-pending-bg)]]="['pendiente', 'licencia'].includes(row[key])"
+                  [class.text-[var(--color-status-pending-text)]]="['pendiente', 'licencia'].includes(row[key])"
+                >
+                  {{ row[key] }}
+                </span>
               </td>
             }
 
-            <!-- generico -->
             @else {
-              <td class="px-4 py-3 truncate whitespace-nowrap overflow-hidden text-ellipsis">
+              <td class="px-4 py-3 truncate whitespace-nowrap overflow-hidden text-ellipsis text-[var(--color-title-main)]">
                 {{ row[key] }}
               </td>
             }
@@ -49,4 +48,3 @@
 
   </table>
 </div>
-

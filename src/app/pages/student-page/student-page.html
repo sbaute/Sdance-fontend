@@ -1,14 +1,15 @@
 <div class="flex flex-col justify-center items-center w-full p-5">
 
-  <!-- COMPONENTE HEADER -->
+  <!-- Header -->
   <div class="w-full">
-    <page-header entityName="Alumnos"/>
+    <page-header entityName="Alumnos" />
   </div>
 
-  <!-- COMPONENTE TABLA GENÉRICA -->
+  <!-- Tabla -->
   <table-complete
-    [columnsName]="columnsName"
-    [rows]="students"
+    [columnsName]="columnsName()"
+    [rows]="rows()"
     [keys]="studentKeys"
   />
 </div>
+

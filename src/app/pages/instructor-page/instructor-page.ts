@@ -10,7 +10,7 @@ import { TableComplete } from "../../components/table/table-complete";
 export default class InstructorPage {
 
 
-        columnsName = [
+   columnsName = [
     'Nombre',
     'Documento',
     'Numero',
