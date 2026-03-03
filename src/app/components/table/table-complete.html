@@ -1,50 +1,105 @@
-<div class="flex flex-col rounded-lg overflow-hidden shadow-lg">
-  <table class="bg-[var(--color-table-body-bg)] table-fixed w-full">
+<div class="w-full">
 
-    <thead class="bg-[var(--color-table-header-bg)]
-                   text-[var(--color-table-header-text)] text-sm">
-      <tr>
-        @for (col of columnsName(); track $index) {
-          <th class="w-40 py-4 px-4 text-left font-semibold whitespace-nowrap truncate">
-            {{ col }}
-          </th>
+  <div class="relative rounded-2xl shadow-lg bg-[var(--color-table-body-bg)]">
+
+    <div class="overflow-x-auto custom-scroll rounded-2xl">
+
+      <table class="min-w-[1200px] table-auto w-full">
+
+        <thead class="bg-[var(--color-table-header-bg)]
+                       text-[var(--color-table-header-text)] text-sm">
+          <tr>
+
+            @if (actions().length) {
+               <th
+                class="sticky left-0 z-20 w-24 min-w-24 px-4 py-4
+                      text-center font-semibold whitespace-nowrap
+                      bg-[var(--color-table-header-bg)]">
+                Acciones
+              </th>
+            }
+
+            @for (col of columnsName(); track $index) {
+              <th
+                class="w-40 min-w-40 px-4 py-4 text-center font-semibold whitespace-nowrap">
+                {{ col }}
+              </th>
+            }
+
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (row of rows(); track $index) {
+            <tr class="border-b border-[var(--color-table-header-bg)] last:border-none">
+
+              @if (actions().length) {
+                <td class="sticky left-0 z-10 bg-[var(--color-table-body-bg)] px-4 py-3">
+  <div class="flex justify-center gap-2">
+
+    @for (action of actions(); track action.icon) {
+          <button
+            (click)="action.action(row)"
+            class="group p-2 rounded-lg
+                  flex items-center justify-center
+                  transition-all duration-200"
+
+            [class.text-[var(--color-primary-600)]]="action.color === 'primary'"
+            [class.hover:bg-[var(--color-primary-600)]]="action.color === 'primary'"
+
+            [class.text-red-400]="action.color === 'danger'"
+            [class.hover:bg-red-400]="action.color === 'danger'"
+          >
+            <i
+              [class]="action.icon"
+              class="transition-colors duration-200
+                    group-hover:text-white">
+            </i>
+          </button>
         }
-      </tr>
-    </thead>
 
-    <tbody>
-      @for (row of rows(); track $index) {
+      </div>
+    </td>
+              }
 
-        <tr class="border-b border-[var(--color-table-header-bg)]">
+              @for (key of keys(); track key) {
 
-          @for (key of keys(); track key) {
+                @if (key === 'status') {
+                  <td class="w-40 min-w-40 px-4 py-3">
+                    <span
+                      class="block w-full truncate px-3 py-1 rounded-full text-sm font-medium text-center"
 
-            @if (key === 'status') {
-              <td class="px-4 py-3">
-                <span
-                  class="px-3 py-1 rounded-full text-sm font-medium"
-                  [class.bg-[var(--color-status-success-bg)]]="['al_dia', 'activo'].includes(row[key])"
-                  [class.text-[var(--color-status-success-text)]]="['al_dia', 'activo'].includes(row[key])"
-                  [class.bg-[var(--color-status-pending-bg)]]="['pendiente', 'licencia'].includes(row[key])"
-                  [class.text-[var(--color-status-pending-text)]]="['pendiente', 'licencia'].includes(row[key])"
-                >
-                  {{ row[key] }}
-                </span>
-              </td>
-            }
+                      [class.bg-[var(--color-status-success-bg)]]="row[key] === 'ACTIVE'"
+                      [class.text-[var(--color-status-success-text)]]="row[key] === 'ACTIVE'"
 
-            @else {
-              <td class="px-4 py-3 truncate whitespace-nowrap overflow-hidden text-ellipsis text-[var(--color-title-main)]">
-                {{ row[key] }}
-              </td>
-            }
+                      [class.bg-[var(--color-status-danger-bg)]]="row[key] === 'SUSPENDED'"
+                      [class.text-[var(--color-status-danger-text)]]="row[key] === 'SUSPENDED'"
 
+                      [class.bg-[var(--color-status-pending-bg)]]="row[key] === 'INACTIVE'"
+                      [class.text-[var(--color-status-pending-text)]]="row[key] === 'INACTIVE'"
+                    >
+                      {{ row[key] }}
+                    </span>
+                  </td>
+                }
+
+                @else {
+                  <td
+                    class="w-40 min-w-40 px-4 py-3 truncate whitespace-nowrap text-[var(--color-title-main)] text-center">
+                    {{ row[key] }}
+                  </td>
+                }
+
+              }
+
+            </tr>
           }
+        </tbody>
 
-        </tr>
+      </table>
 
-      }
-    </tbody>
+    </div>
 
-  </table>
+  </div>
+
 </div>

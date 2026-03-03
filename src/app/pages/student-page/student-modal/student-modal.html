@@ -1,0 +1,175 @@
+<!-- Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center
+            bg-[var(--color-primary-900)]/40 backdrop-blur-sm">
+
+  <!-- Modal Card -->
+  <div class="w-full max-w-2xl mx-4
+              bg-white
+              rounded-2xl
+              shadow-2xl
+              p-8
+              animate-[fadeIn_.2s_ease-out]">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center justify-center">
+
+          <div class="flex items-center gap-2">
+            <i
+              class="fa fa-user text-xl text-[var(--color-title-main)]"
+              aria-hidden="true">
+            </i>
+
+            <h2 class="text-2xl font-semibold text-[var(--color-title-main)]">
+              Nuevo Alumno
+            </h2>
+          </div>
+
+        </div>
+
+
+      <button
+        (click)="onClose()"
+        class="text-[var(--color-primary-600)] hover:text-[var(--color-primary-800)]
+               transition text-lg">
+        ✕
+      </button>
+    </div>
+
+    <!-- Form -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <!-- Nombre -->
+        <div>
+          <input type="text"
+            placeholder="Nombre"
+            class="input-style"
+            [class.border-red-500]="getFieldError('name')"
+            (input)="updateField('name', $any($event.target).value)" />
+
+          @if (getFieldError('name'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- Apellido -->
+        <div>
+          <input type="text"
+            placeholder="Apellido"
+            class="input-style"
+            [class.border-red-500]="getFieldError('lastName')"
+            (input)="updateField('lastName', $any($event.target).value)" />
+
+          @if (getFieldError('lastName'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- Documento -->
+        <div>
+          <input type="text"
+            placeholder="Documento"
+            class="input-style"
+            [class.border-red-500]="getFieldError('document')"
+            (input)="updateField('document', $any($event.target).value)" />
+
+          @if (getFieldError('document'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <input type="text"
+            placeholder="Teléfono"
+            class="input-style"
+            [class.border-red-500]="getFieldError('phoneNumber')"
+            (input)="updateField('phoneNumber', $any($event.target).value)" />
+
+          @if (getFieldError('phoneNumber'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="col-span-2">
+          <input type="email"
+            placeholder="Email"
+            class="input-style"
+            [class.border-red-500]="getFieldError('email')"
+            (input)="updateField('email', $any($event.target).value)" />
+
+          @if (getFieldError('email'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- BirthDate -->
+        <div class="col-span-2">
+          <input type="date"
+            class="input-style"
+            [class.border-red-500]="getFieldError('birthDate')"
+            (input)="updateField('birthDate', $any($event.target).value)" />
+
+          @if (getFieldError('birthDate'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- Contacto Emergencia -->
+        <div>
+          <input type="text"
+            placeholder="Contacto de Emergencia"
+            class="input-style"
+            [class.border-red-500]="getFieldError('emergencyContactName')"
+            (input)="updateField('emergencyContactName', $any($event.target).value)" />
+
+          @if (getFieldError('emergencyContactName'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+        <!-- Tel Emergencia -->
+        <div>
+          <input type="text"
+            placeholder="Teléfono Emergencia"
+            class="input-style"
+            [class.border-red-500]="getFieldError('emergencyContactPhone')"
+            (input)="updateField('emergencyContactPhone', $any($event.target).value)" />
+
+          @if (getFieldError('emergencyContactPhone'); as error) {
+            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+          }
+        </div>
+
+      </div>
+
+    <!-- Actions -->
+    <div class="flex justify-end gap-4 mt-8">
+
+      <button
+        (click)="onClose()"
+        class="px-5 py-2 rounded-full
+               border border-[var(--color-primary-300)]
+               text-[var(--color-primary-700)]
+               hover:bg-[var(--color-primary-100)]
+               transition">
+        Cancelar
+      </button>
+
+     <button
+        (click)="onSave()"
+        [disabled]="isFormInvalid()"
+        class="px-6 py-2 rounded-full
+              bg-[var(--color-button-primary)]
+              text-white font-semibold
+              shadow-md
+              transition-all duration-300
+              disabled:opacity-50 disabled:cursor-not-allowed">
+        Guardar
+      </button>
+
+    </div>
+
+  </div>
+</div>

@@ -1,12 +1,20 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { ButtonAdd } from "./button-add/button-add";
 
 @Component({
   selector: 'page-header',
-  imports: [],
+  imports: [ButtonAdd],
   templateUrl: './page-header.html',
 })
 export class PageHeader {
 
-  // entityName() para leer
-  entityName = input<string>();
+  // Signal input
+  entityName = input.required<string>();
+
+  // Signal output
+  add = output<void>();
+
+  onAdd() {
+    this.add.emit();
+  }
 }

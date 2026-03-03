@@ -29,7 +29,7 @@
       />
     </div>
 
-    <!-- Button -->
+    <!-- Button
     <button
       class="flex items-center gap-2
              px-5 py-2
@@ -40,7 +40,13 @@
              hover:opacity-90 hover:shadow-lg hover:scale-[1.03] active:scale-[0.98]">
       <i class="fa-solid fa-plus text-sm"></i>
       <span>Añadir {{entityName()}}</span>
-    </button>
+    </button> -->
+
+    <!-- Botón genérico -->
+    <button-add
+      [entity]="entityName()"
+      (action)="onAdd()">
+    </button-add>
 
   </div>
 
