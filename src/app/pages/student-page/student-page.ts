@@ -17,7 +17,9 @@ export default class StudentPage {
   private studentService = inject(StudentService);
 
   students = signal<Student[]>([]);
-   errorMessage = signal<string | null>(null);
+  totalStudents = signal(0);
+  currentPage = signal(0);
+  errorMessage = signal<string | null>(null);
 
   studentKeys: (keyof Student | 'fullName')[] = [
   'fullName',
@@ -35,13 +37,21 @@ export default class StudentPage {
   ngOnInit(): void {
     this.loadStudents();
   }
+  
+loadStudents(): void {
+  this.studentService.getAll().subscribe({
+    next: (response) => {
 
-  loadStudents(): void {
-    this.studentService.getAll().subscribe({
-      next: (response) => this.students.set(response.data),
-      error: (err) => console.error('Error cargando estudiantes', err)
-    });
-  }
+      console.log('RESPONSE:', response);
+
+      this.students.set(response.data.items);
+      this.totalStudents.set(response.data.totalElements);
+      this.currentPage.set(response.data.currentPage);
+
+    },
+    error: (err) => console.error('Error cargando estudiantes', err)
+  });
+}
 
 rows = computed(() =>
   this.students().map(student => ({
