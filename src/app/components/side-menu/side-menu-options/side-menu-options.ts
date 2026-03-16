@@ -57,12 +57,6 @@ constructor(
       route: '/dashboard/payment',
     },
 
-    //Logout
-    {
-      icon: 'fa-solid fa-right-from-bracket',
-      label: 'Cerrar sesión',
-      action: 'logout',
-    },
 
   ]
 

@@ -1,12 +1,11 @@
-@for (item of menuOptions; track item.label) {
+<div class="flex flex-col h-full">
 
-  @if (item.route) {
+  <!-- MENU -->
+  @for (item of menuOptions; track item.label) {
     <a
       [routerLink]="item.route"
       routerLinkActive="bg-[var(--color-navbar-active)] text-white"
-      [routerLinkActiveOptions]="{ exact: true }"
-      class="px-3 py-2
-             rounded-lg
+      class="px-3 py-4 mb-1 rounded-lg
              text-[var(--color-navbar-text)]
              hover:bg-[var(--color-navbar-active)]/20
              flex items-center gap-3
@@ -17,44 +16,20 @@
     </a>
   }
 
-  @else {
+  <!-- LOGOUT -->
     <button
-      type="button"
       (click)="logout()"
-      class="w-full text-left
-             px-3 py-2
-             rounded-lg
-             text-[var(--color-navbar-text)]
-             hover:bg-[var(--color-navbar-active)]/20
-             flex items-center gap-3
-             font-medium transition-all duration-200"
+      class="mt-auto
+            w-full text-left
+            px-3 py-3
+            rounded-lg
+            text-[var(--color-navbar-text)]
+            hover:bg-[var(--color-navbar-active)]/20
+            flex items-center gap-3
+            font-medium transition-all duration-200"
     >
-      <i [class]="item.icon"></i>
-      <span class="text-sm">{{ item.label }}</span>
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span class="text-sm">Cerrar sesión</span>
     </button>
-  }
 
-}
-
-
-
-  <!-- Activo -->
-  <!-- Inactivos
-  <a href="#"
-     class="px-3 py-2 rounded-lg flex items-center gap-3 text-slate-500 hover:bg-slate-100">
-    <i class="fa-solid fa-users"></i>
-    <span class="text-sm">Alumnos</span>
-  </a>
-
-  <a href="#"
-     class="px-3 py-2 rounded-lg flex items-center gap-3 text-slate-500 hover:bg-slate-100">
-    <i class="fa-regular fa-clipboard"></i>
-    <span class="text-sm">Clases</span>
-  </a>
-
-  <a href="#"
-     class="px-3 py-2 rounded-lg flex items-center gap-3 text-slate-500 hover:bg-slate-100">
-    <i class="fa-regular fa-credit-card"></i>
-    <span class="text-sm">Pagos</span>
-  </a> -->
-
+</div>

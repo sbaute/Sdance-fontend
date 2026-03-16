@@ -29,4 +29,10 @@
     [keys]="studentKeys"
     [actions]="actions"
   />
+
+  <!-- Paginación -->
+   <pagination
+      [totalElements]="totalStudents()"
+      [currentPage]="currentPage()"
+      (pageChange)="changePage($event)"/>
 </div>

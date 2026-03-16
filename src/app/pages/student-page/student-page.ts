@@ -5,11 +5,12 @@ import { StudentService } from '../../services/student-service';
 import { CreateStudent, Student } from '../../interfaces/students/Student';
 import { StudentModal } from "./student-modal/student-modal";
 import { TableAction } from '../../interfaces/table/TableActions';
+import { Pagination } from '../../components/pagination/Pagination';
 
 
 @Component({
   selector: 'student-page',
-  imports: [TableComplete, PageHeader, StudentModal],
+  imports: [TableComplete, PageHeader, StudentModal, Pagination],
   templateUrl: './student-page.html',
 })
 export default class StudentPage {
@@ -37,7 +38,7 @@ export default class StudentPage {
   ngOnInit(): void {
     this.loadStudents();
   }
-  
+
 loadStudents(): void {
   this.studentService.getAll().subscribe({
     next: (response) => {
@@ -83,6 +84,20 @@ private formatDate(date: string): string {
     };
     return headerMap[key] ?? key;
   }
+
+  //Pagination
+
+  changePage(page: number) {
+  this.studentService.getAll(page).subscribe({
+    next: (response) => {
+
+      this.students.set(response.data.items);
+      this.totalStudents.set(response.data.totalElements);
+      this.currentPage.set(response.data.currentPage);
+
+    }
+  });
+}
 
   //Modals
 

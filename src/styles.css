@@ -108,7 +108,7 @@ body {
          bg-[var(--color-primary-50)]
          border border-[var(--color-primary-200)]
          rounded-xl
-         px-4 py-2
+         px-4 py-3
          text-sm
          text-[var(--color-title-main)]
          placeholder-[var(--color-search-placeholder)]
