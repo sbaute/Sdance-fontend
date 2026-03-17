@@ -26,6 +26,12 @@ export class StudentService {
       .pipe(catchError(this.handleError));
   }
 
+  update(id: string, student: CreateStudent): Observable<ResponseMessage<Student>> {
+    return this.http
+      .put<ResponseMessage<Student>>(`${this.apiUrl}/${id}`, student)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse) {
 
     let errorMsg = 'Error desconocido';

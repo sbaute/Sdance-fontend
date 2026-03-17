@@ -14,10 +14,12 @@
     }
 
     @if (isModalOpen()) {
-      <student-modal
-        (close)="closeStudentModal()"
-        (save)="createStudent($event)" />
-    }
+    <student-modal
+      (close)="closeStudentModal()"
+      (save)="saveStudent($event)"
+      [mode]="modalMode()"
+      [studentInput]="selectedStudent()" />
+   }
   </div>
 
   <!-- 🔥 CONTENEDOR TABLA -->
