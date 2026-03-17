@@ -1,38 +1,48 @@
-<div class="flex flex-col justify-center items-center w-full min-w-0 p-5">
+<div class="flex flex-col w-full min-w-0 p-5 min-h-screen">
 
   <!-- Header -->
   <div class="w-full">
-     <page-header
+    <page-header
       entityName="Alumnos"
       (add)="openStudentModal()">
     </page-header>
 
-   @if (errorMessage()) {
-    <div class="text-red-600 mb-4">
-      {{ errorMessage() }}
-    </div>
-  }
+    @if (errorMessage()) {
+      <div class="text-red-600 mb-4">
+        {{ errorMessage() }}
+      </div>
+    }
 
-  @if (isModalOpen()) {
-    <student-modal
-      (close)="closeStudentModal()"
-      (save)="createStudent($event)" />
-  }
+    @if (isModalOpen()) {
+      <student-modal
+        (close)="closeStudentModal()"
+        (save)="createStudent($event)" />
+    }
+  </div>
+
+  <!-- 🔥 CONTENEDOR TABLA -->
+  <div class="w-full flex-1 flex flex-col">
+
+    <!-- esto es la clave -->
+    <div class="w-full min-h-[420px]">
+      <table-complete
+        class="w-full"
+        [columnsName]="columnsName()"
+        [rows]="rows()"
+        [keys]="studentKeys"
+        [actions]="actions"
+      />
+    </div>
 
   </div>
 
-  <!-- Tabla -->
-  <table-complete
-    class="w-full"
-    [columnsName]="columnsName()"
-    [rows]="rows()"
-    [keys]="studentKeys"
-    [actions]="actions"
-  />
-
-  <!-- Paginación -->
-   <pagination
+  <!-- PAGINACIÓN (no se mueve) -->
+  <div class="w-full pt-4">
+    <pagination
       [totalElements]="totalStudents()"
       [currentPage]="currentPage()"
-      (pageChange)="changePage($event)"/>
+      (pageChange)="changePage($event)"
+    />
+  </div>
+
 </div>

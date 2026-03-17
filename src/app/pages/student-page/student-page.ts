@@ -5,7 +5,7 @@ import { StudentService } from '../../services/student-service';
 import { CreateStudent, Student } from '../../interfaces/students/Student';
 import { StudentModal } from "./student-modal/student-modal";
 import { TableAction } from '../../interfaces/table/TableActions';
-import { Pagination } from '../../components/pagination/Pagination';
+import { Pagination } from '../../components/pagination/pagination';
 
 
 @Component({

@@ -4,32 +4,32 @@
   @for (item of menuOptions; track item.label) {
     <a
       [routerLink]="item.route"
-      routerLinkActive="bg-[var(--color-navbar-active)] text-white"
-      class="px-3 py-4 mb-1 rounded-lg
+      routerLinkActive="active-link"
+      class="menu-item
+             px-3 py-5 mb-3 rounded-xl
              text-[var(--color-navbar-text)]
-             hover:bg-[var(--color-navbar-active)]/20
              flex items-center gap-3
-             font-medium transition-all duration-200"
+             font-medium text-sm
+             transition-all duration-150"
     >
       <i [class]="item.icon"></i>
-      <span class="text-sm">{{ item.label }}</span>
+      <span>{{ item.label }}</span>
     </a>
   }
 
   <!-- LOGOUT -->
-    <button
-      (click)="logout()"
-      class="mt-auto
-            w-full text-left
-            px-3 py-3
-            rounded-lg
-            text-[var(--color-navbar-text)]
-            hover:bg-[var(--color-navbar-active)]/20
-            flex items-center gap-3
-            font-medium transition-all duration-200"
-    >
-      <i class="fa-solid fa-right-from-bracket"></i>
-      <span class="text-sm">Cerrar sesión</span>
-    </button>
+  <button
+    (click)="logout()"
+    class="menu-item mt-auto
+           w-full text-left
+           px-3 py-3 rounded-xl
+           text-[var(--color-navbar-text)]
+           flex items-center gap-3
+           font-medium text-sm
+           transition-all duration-150"
+  >
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Cerrar sesión</span>
+  </button>
 
 </div>

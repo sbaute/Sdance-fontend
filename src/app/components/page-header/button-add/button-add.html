@@ -1,17 +1,28 @@
 <button
   (click)="onClick()"
   [disabled]="disabled()"
-  class="flex items-center gap-2
+  class="relative flex items-center gap-2
          px-5 py-3
          rounded-full
          bg-[var(--color-button-primary)]
          text-white text-sm font-semibold
-         shadow-md transition-all duration-300
-         hover:opacity-90 hover:shadow-lg hover:scale-[1.03]
-         active:scale-[0.98]
-         disabled:opacity-50 disabled:cursor-not-allowed">
 
-<i class="fa-solid" [class]="icon()"></i>
- <span>Añadir {{ entity() }}</span>
+         transition-all duration-150 ease-out
+
+         /* 🌿 ELEVADO (default) */
+         shadow-[6px_6px_12px_rgba(0,0,0,0.2),_-6px_-6px_12px_rgba(255,255,255,0.5)]
+
+         /* ✨ HOVER (más elevado) */
+         hover:shadow-[8px_8px_16px_rgba(0,0,0,0.25),_-8px_-8px_16px_rgba(255,255,255,0.6)]
+
+         /* 🔘 PRESION REAL (se hunde) */
+         active:shadow-[inset_5px_5px_10px_rgba(0,0,0,0.25),_inset_-5px_-5px_10px_rgba(255,255,255,0.4)]
+         active:translate-y-[1px]
+
+         disabled:opacity-50 disabled:cursor-not-allowed"
+>
+
+  <i class="fa-solid" [class]="icon()"></i>
+  <span>Añadir {{ entity() }}</span>
 
 </button>

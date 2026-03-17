@@ -17,7 +17,7 @@ body {
 --color-primary-300: #C9DED9; /* fondo navbar */
 
 --color-primary-400: #49A695; /* navbar activo / hover states */
---color-primary-500: #4BA68C; /* botones principales */
+--color-primary-500: #3FA693; /* botones principales */
 --color-primary-600: #368C86; /* texto items navbar */
 --color-primary-700: #3B8C7D; /* hover botones / elementos interactivos */
 
@@ -116,4 +116,120 @@ body {
          focus:ring-2
          focus:ring-[var(--color-button-primary)]/30
          transition-all;
+}
+
+
+/* EFECTO BUTTON REAL */
+
+.menu-item {
+  background: var(--color-navbar-bg);
+
+  /* 🌿 estado normal (elevado) */
+  box-shadow:
+    4px 4px 10px rgba(0,0,0,0.15),
+    -4px -4px 10px rgba(255,255,255,0.4);
+}
+
+/* ✨ hover → se levanta */
+.menu-item:hover {
+  box-shadow:
+    6px 6px 14px rgba(0,0,0,0.2),
+    -6px -6px 14px rgba(255,255,255,0.5);
+  transform: translateY(-1px);
+}
+
+/* 🔘 click → se hunde */
+.menu-item:active {
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,0.2),
+    inset -4px -4px 8px rgba(255,255,255,0.4);
+  transform: translateY(1px);
+}
+
+/* ✅ link activo (ruta actual) */
+.active-link {
+  background: var(--color-navbar-active);
+  color: white;
+
+  box-shadow:
+    inset 5px 5px 10px rgba(0,0,0,0.25),
+    inset -5px -5px 10px rgba(255,255,255,0.2);
+}
+
+
+
+/* 🌿 BOTONES ANTERIOR / SIGUIENTE */
+.neo-btn {
+  background: var(--color-table-body-bg);
+
+  box-shadow:
+    5px 5px 12px rgba(0,0,0,0.15),
+    -5px -5px 12px rgba(255,255,255,0.5);
+
+  transition: all 0.15s ease;
+}
+
+/* hover → levanta */
+.neo-btn:hover {
+  box-shadow:
+    8px 8px 18px rgba(0,0,0,0.2),
+    -8px -8px 18px rgba(255,255,255,0.6);
+
+  transform: translateY(-2px);
+}
+
+/* click → se hunde */
+.neo-btn:active {
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,0.2),
+    inset -4px -4px 8px rgba(255,255,255,0.4);
+
+  transform: translateY(1px);
+}
+
+/* disabled */
+.neo-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* 🔵 BOTONES DE PÁGINA */
+.neo-page {
+  background: var(--color-table-body-bg);
+
+  box-shadow:
+    4px 4px 10px rgba(0,0,0,0.15),
+    -4px -4px 10px rgba(255,255,255,0.5);
+
+  transition: all 0.15s ease;
+}
+
+/* hover */
+.neo-page:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    6px 6px 14px rgba(0,0,0,0.2),
+    -6px -6px 14px rgba(255,255,255,0.6);
+}
+
+/* click */
+.neo-page:active {
+  box-shadow:
+    inset 3px 3px 6px rgba(0,0,0,0.2),
+    inset -3px -3px 6px rgba(255,255,255,0.4);
+
+  transform: translateY(1px);
+}
+
+/* ✅ página activa (queda hundida) */
+.neo-active {
+  background: var(--color-primary-500);
+  color: white;
+
+  box-shadow:
+    inset 5px 5px 10px rgba(0,0,0,0.25),
+    inset -5px -5px 10px rgba(255,255,255,0.2);
 }

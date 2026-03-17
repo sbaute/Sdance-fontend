@@ -57,8 +57,9 @@
                 }
 
                 @else {
-                  <td
-                    class="w-40 min-w-40 px-4 py-3 truncate whitespace-nowrap text-[var(--color-title-main)] text-center">
+                 <td
+                    class="w-40 min-w-40 px-4 py-3 truncate whitespace-nowrap text-[var(--color-title-main)] text-center"
+                    [class.font-semibold]="key === 'fullName'">
                     {{ row[key] }}
                   </td>
                 }

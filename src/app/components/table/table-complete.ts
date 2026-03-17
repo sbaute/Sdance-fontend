@@ -5,6 +5,7 @@ import { TableAction } from '../../interfaces/table/TableActions';
   selector: 'table-complete',
   standalone: true,
   templateUrl: './table-complete.html',
+  imports: [],
 })
 export class TableComplete {
 
