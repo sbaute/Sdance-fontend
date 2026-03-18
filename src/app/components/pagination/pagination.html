@@ -2,7 +2,7 @@
 
   <!-- anterior -->
   <button
-    class="neo-btn flex items-center gap-2 px-4 py-2 rounded-full
+    class="neo-btn flex items-center gap-2 px-1 py-2 rounded-full
            text-[var(--color-title-main)]"
     (click)="prev()"
     [disabled]="currentPage() === 0"
@@ -16,7 +16,7 @@
             d="m2 10l8 8l1.4-1.4L5.8 11H18V9H5.8l5.6-5.6L10 2z"/>
     </svg>
 
-    <span>Anterior</span>
+    <span></span>
   </button>
 
   <!-- páginas -->
@@ -34,13 +34,13 @@
 
   <!-- siguiente -->
   <button
-    class="neo-btn flex items-center gap-2 px-4 py-2 rounded-full
+    class="neo-btn flex items-center gap-2 px-1 py-2 rounded-full
            text-[var(--color-title-main)]"
     (click)="next()"
     [disabled]="currentPage() === totalPages() - 1"
   >
 
-    <span>Siguiente</span>
+    <span></span>
 
     <svg xmlns="http://www.w3.org/2000/svg"
          width="18" height="18"

@@ -20,7 +20,7 @@
             @if (actions().length) {
             <th
               class="sticky right-0 z-20
-                    w-30 min-w-30
+                    w-30 min-w-40
                     px-4 py-4
                     text-center font-semibold whitespace-nowrap
                     bg-[var(--color-table-header-bg)]">
@@ -73,30 +73,44 @@
 
       @if (actions().length) {
           <td class="sticky right-0 z-10
-                    w-40 min-w-40
-                    bg-[var(--color-table-body-bg)]
-                    px-4 py-3">
+           w-[90px] min-w-[90px]
+           bg-[var(--color-table-body-bg)]
+           px-1 py-2">
 
-            <div class="flex justify-center gap-2">
+            <div class="flex justify-center gap-3">
 
               @for (action of actions(); track action.icon) {
                 <button
-                  (click)="action.action(row)"
-                  class="group p-2 rounded-lg
-                        flex items-center justify-center
-                        transition-all duration-200"
+                    (click)="action.action(row)"
+                    class="group px-2 py-2 rounded-full
+                          flex items-center justify-center
+                          transition-all duration-200
 
-                  [class.text-[var(--color-primary-600)]]="action.color === 'primary'"
-                  [class.hover:bg-[var(--color-primary-600)]]="action.color === 'primary'"
+                          shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),inset_0_-2px_4px_rgba(0,0,0,0.2),0_2px_6px_rgba(0,0,0,0.25)]
+                          ring-1 ring-white/10
 
-                  [class.text-red-400]="action.color === 'danger'"
-                  [class.hover:bg-red-400]="action.color === 'danger'"
-                >
-                  <i
-                    [class]="action.icon"
-                    class="transition-colors duration-200 group-hover:text-white">
-                  </i>
-                </button>
+                          hover:scale-105
+                          hover:shadow-[inset_0_1px_3px_rgba(255,255,255,0.3),inset_0_-3px_6px_rgba(0,0,0,0.25),0_4px_12px_rgba(0,0,0,0.35)]
+
+                          active:scale-95
+                          active:shadow-[inset_0_3px_6px_rgba(0,0,0,0.3)]
+
+                          backdrop-blur-sm"
+
+                    [class.bg-[var(--color-primary-100)]]="action.color === 'primary'"
+                    [class.text-[var(--color-primary-600)]]="action.color === 'primary'"
+
+                    [class.bg-red-100]="action.color === 'danger'"
+                    [class.text-red-500]="action.color === 'danger'"
+                  >
+                    <i
+                      [class]="action.icon"
+                      class="text-lg
+                            transition-all duration-200
+                            group-hover:scale-110
+                            group-hover:text-white">
+                    </i>
+              </button>
               }
 
             </div>
