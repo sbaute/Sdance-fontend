@@ -13,7 +13,7 @@ export class TableComplete {
   columnsName = input<string[]>([]);
 
   // Recibe las filas (cada una un objeto genérico)
-  rows = input<Record<string, any>[]>([]);
+  rows = input<Record<string, unknown>[]>([]);
 
   // Opcional → si quiero definir el orden de keys a mostrar
   keys = input<string[]>([]);
@@ -22,5 +22,6 @@ export class TableComplete {
   actions = input<TableAction<any>[]>([]);
 
   /** Emitted when the user clicks the status badge (Estado). */
-  statusClick = output<Record<string, any>>();
+  statusClick = output<Record<string, unknown>>();
+  rowClick = output<Record<string, unknown>>();
 }

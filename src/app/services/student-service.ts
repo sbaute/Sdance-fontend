@@ -33,6 +33,18 @@ export class StudentService {
       .pipe(catchError(this.handleError));
   }
 
+  delete(id: string): Observable<void> {
+    return this.http
+      .delete<void>(`${this.apiUrl}/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getStudentById(id: string): Observable<ResponseMessage<Student>> {
+    return this.http
+      .get<ResponseMessage<Student>>(`${this.apiUrl}/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
   /**
    * PATCH /api/v1/students/{id}/status?status=ACTIVE
    * Backend returns the enum value directly (not wrapped in ResponseMessage).

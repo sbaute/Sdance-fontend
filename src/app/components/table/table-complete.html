@@ -33,7 +33,10 @@
 
         <tbody>
           @for (row of rows(); track $index) {
-            <tr class="border-b border-[var(--color-table-header-bg)] last:border-none">
+            <tr
+              class="border-b border-[var(--color-table-header-bg)] last:border-none cursor-pointer hover:bg-black/5 transition-colors"
+              (click)="rowClick.emit(row)"
+            >
 
               @for (key of keys(); track key) {
 
@@ -89,7 +92,7 @@
 
               @for (action of actions(); track action.icon) {
                 <button
-                    (click)="action.action(row)"
+                    (click)="action.action(row); $event.stopPropagation()"
                     class="group px-2 py-2 rounded-full
                           flex items-center justify-center
                           transition-all duration-200

@@ -1,0 +1,140 @@
+<div class="w-full min-w-0 min-h-screen">
+  <div class="w-full flex flex-col gap-4">
+    <a
+      routerLink="/dashboard/student"
+      class="inline-flex py-1 items-center gap-2 text-[var(--color-title-main)]/80 hover:text-[var(--color-title-main)] font-medium transition-colors"
+    >
+      <i class="fa-solid fa-arrow-left text-sm"></i>
+      Volver
+    </a>
+
+    <h1 class="text-3xl py-4 font-semibold text-[var(--color-title-main)]">Detalle del Alumno</h1>
+  </div>
+
+  @if (loading()) {
+    <div class="w-full rounded-2xl p-4 bg-white/80 shadow-lg text-[var(--color-title-main)]/80">
+      Cargando información del alumno...
+    </div>
+  }
+
+  @if (errorMessage()) {
+    <div class="w-full rounded-2xl p-4 bg-red-100/90 text-red-700 shadow-lg">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  @if (student(); as studentData) {
+    <section class="w-full rounded-2xl overflow-hidden shadow-lg border border-[var(--color-table-header-bg)] bg-[var(--color-table-body-bg)]">
+      <header class="flex flex-wrap items-center justify-between gap-3 px-4 py-3 bg-[var(--color-table-header-bg)] border-b border-[var(--color-table-header-bg)]">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-[var(--color-primary-100)] text-[var(--color-primary-600)] flex items-center justify-center">
+            <i class="fa-solid fa-user text-sm"></i>
+          </div>
+          <h2 class="text-xl font-semibold text-[var(--color-title-main)]">Datos Personales</h2>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            (click)="openEditModal()"
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-[var(--color-table-body-bg)] border border-[var(--color-primary-100)] text-[var(--color-primary-600)] text-sm font-semibold hover:bg-white transition-colors"
+          >
+            <i class="fa-solid fa-pen text-xs"></i>
+            Editar
+          </button>
+          <button
+            type="button"
+            (click)="deleteStudent()"
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-[var(--color-table-body-bg)] border border-red-200 text-red-500 text-sm font-semibold hover:bg-white transition-colors"
+          >
+            <i class="fa-regular fa-trash-can text-xs"></i>
+            Eliminar
+          </button>
+        </div>
+      </header>
+
+      <div class="px-5 py-5">
+        <div class="flex flex-wrap items-center gap-3 mb-3">
+          <h3 class="text-2xl font-semibold text-[var(--color-title-main)]">
+            {{ studentData.name }} {{ studentData.lastName }}
+          </h3>
+          <span
+            class="inline-block min-w-28 px-3 py-1 rounded-full text-sm font-medium text-center
+                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),inset_0_-2px_4px_rgba(0,0,0,0.2),0_2px_6px_rgba(0,0,0,0.25)]
+                  ring-1 ring-white/10"
+            [class.bg-[var(--color-status-success-bg)]]="studentData.status === 'ACTIVE'"
+            [class.text-[var(--color-status-success-text)]]="studentData.status === 'ACTIVE'"
+            [class.bg-[var(--color-status-danger-bg)]]="studentData.status === 'BLOCKED'"
+            [class.text-[var(--color-status-danger-text)]]="studentData.status === 'BLOCKED'"
+            [class.bg-[var(--color-status-pending-bg)]]="studentData.status === 'INACTIVE'"
+            [class.text-[var(--color-status-pending-text)]]="studentData.status === 'INACTIVE'"
+            [class.bg-[var(--color-status-neutral-bg)]]="studentData.status === 'DEACTIVATED'"
+            [class.text-[var(--color-status-neutral-text)]]="studentData.status === 'DEACTIVATED'"
+          >
+            {{ studentData.status }}
+          </span>
+        </div>
+        <div class="h-px bg-[var(--color-table-header-bg)] mb-4"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Nombre</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.name }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Apellido</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.lastName }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Documento</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.document }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Teléfono</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.phoneNumber }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Correo electrónico</p>
+            <p class="text-base text-[var(--color-title-main)] break-all">{{ studentData.email }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Fecha de nacimiento</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.birthDate }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Contacto de emergencia</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.emergencyContactName }}</p>
+          </div>
+
+          <div>
+            <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Teléfono de emergencia</p>
+            <p class="text-base text-[var(--color-title-main)]">{{ studentData.emergencyContactPhone }}</p>
+          </div>
+
+          @if (studentData.registrationDate) {
+            <div>
+              <p class="text-sm text-[var(--color-title-main)]/70 mb-1">Fecha de registro</p>
+              <p class="text-base text-[var(--color-title-main)]">{{ studentData.registrationDate }}</p>
+            </div>
+          }
+
+        </div>
+      </div>
+    </section>
+  }
+
+  @if (isEditModalOpen() && student(); as currentStudent) {
+    <student-modal
+      [mode]="'edit'"
+      [studentInput]="currentStudent"
+      (close)="closeEditModal()"
+      (save)="saveStudentUpdate($event)"
+    />
+  }
+</div>

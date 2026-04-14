@@ -15,7 +15,6 @@ export const routes: Routes = [
      loadComponent: () => import('./pages/login-page/login').then(m => m.Login),
   },
 
-
    {
     path: 'dashboard',
     canActivate: [authGuard],
@@ -24,6 +23,10 @@ export const routes: Routes = [
       {
         path: 'student',
         loadComponent: () => import('./pages/student-page/student-page'),
+      },
+      {
+        path: 'student/:id',
+        loadComponent: () => import('./pages/student-page/student-detail/student-detail'),
       },
       {
         path: 'class',

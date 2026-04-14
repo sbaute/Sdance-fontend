@@ -1,4 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { TableComplete } from '../../components/table/table-complete';
 import { PageHeader } from "../../components/page-header/page-header";
 import { StudentService } from '../../services/student-service';
@@ -17,6 +18,7 @@ import { StudentStatus } from '../../enums/student-status.enum';
 export default class StudentPage {
 
   private studentService = inject(StudentService);
+  private router = inject(Router);
 
   students = signal<Student[]>([]);
 
@@ -229,6 +231,12 @@ saveStudent(student: CreateStudent) {
   // Actualmente solo muestra el estudiante en consola.
   deleteStudent(student: Student) {
     console.log('🗑️ ELIMINAR estudiante:', student);
+  }
+
+  navigateToStudentDetail(row: Record<string, unknown>): void {
+    const studentId = row['id'];
+    if (typeof studentId !== 'string') return;
+    this.router.navigate(['/dashboard/student', studentId]);
   }
 
 }

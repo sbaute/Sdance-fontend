@@ -12,6 +12,7 @@ export interface Student {
   emergencyContactName: string;
   emergencyContactPhone: string;
   status: StudentStatus;
+  registrationDate?: string;
 }
 
 export type CreateStudent = Omit<Student, 'id' | 'status'>;
