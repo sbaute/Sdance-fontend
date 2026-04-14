@@ -1,7 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
+import { StudentStatus } from '../enums/student-status.enum';
 import { ResponseMessage } from '../interfaces/ResponseMessage';
 import { CreateStudent, Student } from '../interfaces/students/Student';
 import { PageResponseDTO } from '../interfaces/Paginated';
@@ -29,6 +30,17 @@ export class StudentService {
   update(id: string, student: CreateStudent): Observable<ResponseMessage<Student>> {
     return this.http
       .put<ResponseMessage<Student>>(`${this.apiUrl}/${id}`, student)
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+   * PATCH /api/v1/students/{id}/status?status=ACTIVE
+   * Backend returns the enum value directly (not wrapped in ResponseMessage).
+   */
+  updateStatus(id: string, status: StudentStatus): Observable<StudentStatus> {
+    const params = new HttpParams().set('status', status);
+    return this.http
+      .patch<StudentStatus>(`${this.apiUrl}/${id}/status`, null, { params })
       .pipe(catchError(this.handleError));
   }
 

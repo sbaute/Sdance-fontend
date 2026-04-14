@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TableAction } from '../../interfaces/table/TableActions';
 
 @Component({
@@ -20,4 +20,7 @@ export class TableComplete {
 
   //Acciones para cada fila (editar, eliminar, etc)
   actions = input<TableAction<any>[]>([]);
+
+  /** Emitted when the user clicks the status badge (Estado). */
+  statusClick = output<Record<string, any>>();
 }

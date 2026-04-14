@@ -1,0 +1,66 @@
+<div
+  class="fixed inset-0 z-[60] flex items-center justify-center
+         bg-[var(--color-primary-900)]/40 backdrop-blur-sm">
+
+  <div
+    class="w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl p-8
+           animate-[fadeIn_.2s_ease-out]">
+
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-semibold text-[var(--color-title-main)]">
+        Cambiar estado
+      </h2>
+      <button
+        type="button"
+        (click)="onCancel()"
+        [disabled]="loading()"
+        class="text-[var(--color-primary-600)] hover:text-[var(--color-primary-800)] transition text-lg disabled:opacity-50">
+        ✕
+      </button>
+    </div>
+
+    <form [formGroup]="statusForm" (ngSubmit)="onSave()" class="flex flex-col gap-4">
+      <div>
+        <label for="student-status-select" class="block text-sm font-medium text-[var(--color-title-main)] mb-2">
+          Estado
+        </label>
+        <select
+          id="student-status-select"
+          formControlName="status"
+          [disabled]="loading()"
+          class="input-style w-full">
+          @for (opt of statusOptions; track opt) {
+            <option [ngValue]="opt">{{ opt }}</option>
+          }
+        </select>
+      </div>
+
+      @if (errorMessage(); as err) {
+        <p class="text-red-600 text-sm">{{ err }}</p>
+      }
+
+      <div class="flex justify-end gap-3 mt-4">
+        <button
+          type="button"
+          (click)="onCancel()"
+          [disabled]="loading()"
+          class="px-5 py-2 rounded-full border border-[var(--color-primary-300)]
+                 text-[var(--color-primary-700)] hover:bg-[var(--color-primary-100)] transition
+                 disabled:opacity-50">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          [disabled]="loading() || statusForm.invalid"
+          class="px-6 py-2 rounded-full bg-[var(--color-button-primary)] text-white font-semibold
+                 shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed min-w-[7rem]">
+          @if (loading()) {
+            Guardando…
+          } @else {
+            Guardar
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

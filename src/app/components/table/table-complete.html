@@ -40,7 +40,12 @@
                 @if (key === 'status') {
                   <td class="w-40 min-w-40 px-4 py-3">
                     <span
-                      class="block w-full truncate px-3 py-1 rounded-full text-sm font-medium text-center
+                      role="button"
+                      tabindex="0"
+                      (click)="statusClick.emit(row); $event.stopPropagation()"
+                      (keydown.enter)="statusClick.emit(row); $event.stopPropagation()"
+                      (keydown.space)="$event.preventDefault(); statusClick.emit(row); $event.stopPropagation()"
+                      class="block w-full truncate px-3 py-1 rounded-full text-sm font-medium text-center cursor-pointer
                             shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),inset_0_-2px_4px_rgba(0,0,0,0.2),0_2px_6px_rgba(0,0,0,0.25)]
                             ring-1 ring-white/10
                             transition-all duration-200
@@ -50,11 +55,14 @@
                       [class.bg-[var(--color-status-success-bg)]]="row[key] === 'ACTIVE'"
                       [class.text-[var(--color-status-success-text)]]="row[key] === 'ACTIVE'"
 
-                      [class.bg-[var(--color-status-danger-bg)]]="row[key] === 'SUSPENDED'"
-                      [class.text-[var(--color-status-danger-text)]]="row[key] === 'SUSPENDED'"
+                      [class.bg-[var(--color-status-danger-bg)]]="row[key] === 'BLOCKED'"
+                      [class.text-[var(--color-status-danger-text)]]="row[key] === 'BLOCKED'"
 
                       [class.bg-[var(--color-status-pending-bg)]]="row[key] === 'INACTIVE'"
                       [class.text-[var(--color-status-pending-text)]]="row[key] === 'INACTIVE'"
+
+                      [class.bg-[var(--color-status-neutral-bg)]]="row[key] === 'DEACTIVATED'"
+                      [class.text-[var(--color-status-neutral-text)]]="row[key] === 'DEACTIVATED'"
                     >
                       {{ row[key] }}
                   </span>

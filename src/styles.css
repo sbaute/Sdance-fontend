@@ -73,6 +73,20 @@ body {
   --color-status-success-bg: #C0E0C1; /* fondo al día */
   --color-status-success-text: #1B5919; /* letra al día */
 
+  /* =========================
+   STATUS: BLOQUEADO
+   ========================= */
+
+--color-status-danger-bg: #F5B5B5;   /* fondo rojo suave */
+--color-status-danger-text: #7A1C1C; /* texto rojo oscuro */
+
+/* =========================
+   STATUS: DESACTIVADO
+   ========================= */
+
+--color-status-neutral-bg: #E5E7EB;
+--color-status-neutral-text: #374151;
+
 }
 
 .custom-scroll::-webkit-scrollbar {

@@ -1,3 +1,5 @@
+import { StudentStatus } from '../../enums/student-status.enum';
+
 export interface Student {
   id: string; // UUID como string
   name: string;
@@ -9,7 +11,7 @@ export interface Student {
   birthDate: string; // formato: "YYYY-MM-DD"
   emergencyContactName: string;
   emergencyContactPhone: string;
-  status: string;
+  status: StudentStatus;
 }
 
 export type CreateStudent = Omit<Student, 'id' | 'status'>;

@@ -4,12 +4,14 @@ import { PageHeader } from "../../components/page-header/page-header";
 import { StudentService } from '../../services/student-service';
 import { CreateStudent, Student } from '../../interfaces/students/Student';
 import { StudentModal } from "./student-modal/student-modal";
+import { StudentStatusModal } from './student-status-modal/student-status-modal';
 import { TableAction } from '../../interfaces/table/TableActions';
 import { Pagination } from '../../components/pagination/pagination';
+import { StudentStatus } from '../../enums/student-status.enum';
 
 @Component({
   selector: 'student-page',
-  imports: [TableComplete, PageHeader, StudentModal, Pagination],
+  imports: [TableComplete, PageHeader, StudentModal, StudentStatusModal, Pagination],
   templateUrl: './student-page.html',
 })
 export default class StudentPage {
@@ -114,6 +116,9 @@ studentKeys: (keyof Student | 'fullName' | 'birthDateFormatted')[] = [
   // Signal que controla si el modal está abierto o cerrado.
   isModalOpen = signal(false);
 
+  /** Modal dedicado a cambiar estado (PATCH /students/{id}/status). */
+  statusModalContext = signal<{ id: string; status: StudentStatus } | null>(null);
+
   // Abre el modal para crear un estudiante.
   openStudentModal() {
     this.modalMode.set('create');
@@ -130,6 +135,26 @@ studentKeys: (keyof Student | 'fullName' | 'birthDateFormatted')[] = [
   // Cierra el modal de estudiante.
   closeStudentModal() {
     this.isModalOpen.set(false);
+  }
+
+  openStudentStatusModal(row: Record<string, unknown>): void {
+    const id = row['id'];
+    const status = row['status'];
+    if (typeof id !== 'string' || typeof status !== 'string') return;
+    this.statusModalContext.set({ id, status: status as StudentStatus });
+  }
+
+  closeStudentStatusModal(): void {
+    this.statusModalContext.set(null);
+  }
+
+  onStudentStatusSaved(newStatus: StudentStatus): void {
+    const ctx = this.statusModalContext();
+    if (!ctx) return;
+    this.students.update((list) =>
+      list.map((s) => (s.id === ctx.id ? { ...s, status: newStatus } : s)),
+    );
+    this.closeStudentStatusModal();
   }
 
   // Crea un nuevo estudiante llamando al servicio.

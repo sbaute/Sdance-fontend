@@ -20,6 +20,15 @@
       [mode]="modalMode()"
       [studentInput]="selectedStudent()" />
    }
+
+    @if (statusModalContext(); as ctx) {
+      <student-status-modal
+        [studentId]="ctx.id"
+        [currentStatus]="ctx.status"
+        (close)="closeStudentStatusModal()"
+        (saved)="onStudentStatusSaved($event)"
+      />
+    }
   </div>
 
   <!-- 🔥 CONTENEDOR TABLA -->
@@ -33,6 +42,7 @@
         [rows]="rows()"
         [keys]="studentKeys"
         [actions]="actions"
+        (statusClick)="openStudentStatusModal($event)"
       />
     </div>
 
